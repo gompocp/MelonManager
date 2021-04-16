@@ -17,14 +17,12 @@ class MelonText extends StatelessWidget {
               color: melonGreenColor
           ),
         ),
-        Expanded(
-          child: Text('Manager',
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: fontSize,
-                fontFamily: 'Jaapokki',
-                color: melonRedColor
-            ),
+        Text('Manager',
+          textAlign: TextAlign.left,
+          style: TextStyle(
+              fontSize: fontSize,
+              fontFamily: 'Jaapokki',
+              color: melonRedColor
           ),
         ),
       ],

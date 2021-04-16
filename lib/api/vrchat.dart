@@ -1,5 +1,3 @@
-
-
 import 'package:melonmanager/enums/sortmode.dart';
 import 'package:melonmanager/models/mod.dart';
 

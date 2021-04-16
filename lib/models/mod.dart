@@ -1,4 +1,3 @@
-
 import 'dart:core';
 
 import 'modversion.dart';

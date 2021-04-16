@@ -1,15 +1,15 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:melonmanager/api/api.dart';
 import 'package:melonmanager/api/vrchat.dart';
 import 'package:melonmanager/enums/gametype.dart';
 import 'package:melonmanager/enums/sortmode.dart';
 import 'package:melonmanager/models/mod.dart';
 import 'package:melonmanager/widgets/melonload.dart';
 import 'package:melonmanager/widgets/modgridtile.dart';
+
 
 
 class Game extends StatefulWidget {
@@ -44,9 +44,48 @@ class _GameState extends State<Game> {
                   mod: mods[index],
                 ),
                 onTap: () {
-                  /*Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return DetailScreen(imagesUrls[index]);
-                  }));*/
+                  showDialog(
+                      context: context,
+                      builder: (builder) {
+                        return AlertDialog(
+                          scrollable: true,
+                          title: Text(
+                              mods[index].versions[0].name
+                          ),
+                          content: Column(
+                            children: [
+                              /*Markdown(
+                                data: mods[index].versions[0].description,
+                              ),*/
+                              Text(
+                                mods[index].versions[0].description,
+                                style: TextStyle(
+                                  fontSize: 15
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Made by: ${mods[index].versions[0].author.startsWith("<@!") ? API.getGithubUsername(mods[index].versions[0].sourcelink) : mods[index].versions[0].author}",),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: CircleAvatar(
+                                        minRadius: 10,
+                                        maxRadius: 15,
+                                        foregroundImage: CachedNetworkImageProvider("https://github.com/${API.getGithubUsername(mods[index].versions[0].sourcelink)}.png?size=40",),
+                                        backgroundColor: Colors.white,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                        );
+                      }
+                  );
                 },
               ),
             ),

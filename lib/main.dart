@@ -8,7 +8,7 @@ import 'package:melonmanager/themes.dart';
 import 'package:melonmanager/widgets/melontext.dart';
 
 void main() {
-  runApp(App(),);
+  runApp(App());
 }
 
 class App extends StatefulWidget {
@@ -75,7 +75,13 @@ class _AppState extends State<App> {
               ),
             ),
             appBar: AppBar(
-              title: MelonText(fontSize: 35,),
+              title: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: MelonText(
+                    fontSize: 35,
+                  )
+              ),
+              //TODO: MOVE THESE BUTTONS SOMEWHERE ELSE
               actions: [
                 IconButton(
                     icon: Icon(Icons.info_rounded),
