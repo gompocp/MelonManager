@@ -1,16 +1,20 @@
 # melonmanager
 
-A new Flutter project.
+Flutter/Dart port of Slaynash's MelonManager written in TypeScript
 
-## Getting Started
+Why you might ask? Flutter Applications lets you compile to several different platforms,
+Heck you could probably get this to run on your ios device if you wanted to
 
-This project is a starting point for a Flutter application.
+You can find prebuilt releases for android/web/windows through github actions here
 
-A few resources to get you started if this is your first Flutter project:
+## Building
+If you'd like to build this yourself you'll need to 
+- Install flutter (^2.0.4)
+- Install all Necessary C++ Build Tools, Windows 10 SDK etc. if you want to build for Windows
+- Edit Your Flutter Config to enable windows building
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Then you run can the flutter commands
+- `flutter pub get`
+- `flutter build windows` for windows
+- `flutter build android` for android
+- `flutter build web` for a web build
