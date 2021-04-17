@@ -5,7 +5,7 @@ WIP Flutter/Dart port of [Slaynash's MelonManager](https://github.com/Slaynash/M
 Why you might ask? Its simple and easy to make nice looking apps with little effort. Flutter also lets you compile to several different platforms,
 Heck you could probably get this to run on your ios device if you wanted to
 
-You can find prebuilt releases for android/web/windows through github actions here
+You can find prebuilt releases for android/web(Note: CORS fucks this up a bit you can see this [here](https://melonmanagerdemo.glitch.me))/windows through github actions here
 
 ## Building
 If you'd like to build this yourself you'll need to 
