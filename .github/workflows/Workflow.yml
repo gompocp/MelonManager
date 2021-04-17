@@ -1,0 +1,57 @@
+name: Flutter CI
+on:
+  push:
+    branches:
+    - main
+# on: push    # Default will running for every branch.
+env:
+  flutter_version: "2.0.4"
+  
+jobs:
+  Build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    
+    - run:  echo "{C:\Program Files\Git\usr\bin}" >> $GITHUB_PATH 
+    
+    - name: Cache Flutter dependencies
+      uses: actions/cache@v2
+      with:
+        path: C:\hostedtoolcache\windows\flutter\ 
+        key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+        
+    - uses: actions/setup-java@v1
+      name: Setup Java
+      with:
+        java-version: '12.x'
+        
+    - uses: subosito/flutter-action@v1
+      name: Setup Flutter
+      with:
+        flutter-version: ${{ env.flutter_version }}
+        
+    - run: flutter config --enable-windows-desktop
+    - run: flutter pub get
+    
+    - run: flutter build windows
+    - run: flutter build web
+    - run: flutter build apk
+    
+    - uses: actions/upload-artifact@v2
+      name: Uploading Windows Zip...
+      with:
+        name: Windows
+        path: ./build/windows/runner/Release/*
+    
+    - uses: actions/upload-artifact@v2
+      name: Uploading Web Zip...
+      with:
+        name: Web
+        path: ./build/web/*
+
+    - uses: actions/upload-artifact@v2
+      name: Uploading Android Zip...
+      with:
+        name: Android
+        path: ./build/app/outputs/apk/release/app-release.apk
