@@ -2,7 +2,7 @@ name: Flutter CI
 on:
   push:
     branches:
-    - main
+    - master
 # on: push    # Default will running for every branch.
 env:
   flutter_version: "2.0.4"
