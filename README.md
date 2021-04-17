@@ -1,8 +1,8 @@
 # MelonManager
 
-Flutter/Dart port of [Slaynash's MelonManager](https://github.com/Slaynash/MelonManager/) written in TypeScript minus the mods installation segment
+WIP Flutter/Dart port of [Slaynash's MelonManager](https://github.com/Slaynash/MelonManager/) written in TypeScript minus the mods installation segment
 
-Why you might ask? Flutter Applications lets you compile to several different platforms,
+Why you might ask? Its simple and easy to make nice looking apps with little effort. Flutter also lets you compile to several different platforms,
 Heck you could probably get this to run on your ios device if you wanted to
 
 You can find prebuilt releases for android/web/windows through github actions here
