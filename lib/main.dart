@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:melonmanager/constants.dart';
-import 'package:melonmanager/enums/gametype.dart';
+import 'package:melonmanager/screens/btd6mods.dart';
 import 'package:melonmanager/screens/home.dart';
-import 'package:melonmanager/screens/game.dart';
+import 'package:melonmanager/screens/tldmods.dart';
+import 'package:melonmanager/screens/vrchatmods.dart';
 import 'package:melonmanager/themes.dart';
 import 'package:melonmanager/widgets/melontext.dart';
 
@@ -58,7 +59,7 @@ class _AppState extends State<App> {
                     onTap: ()  {
                       Navigator.pop(context);
                       setState(() {
-                        currentScreen = Game(key: UniqueKey(), gameType: GameType.VRChat,);
+                        currentScreen = VRChatMods();
                       });
                     },
                   ),
@@ -67,7 +68,16 @@ class _AppState extends State<App> {
                     onTap: () {
                       Navigator.pop(context);
                       setState(() {
-                        currentScreen = Game(key: UniqueKey(), gameType: GameType.BTD6,);
+                        currentScreen = BTD6Mods();
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text('The Long Dark'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      setState(() {
+                        currentScreen = TLDMods();
                       });
                     },
                   ),

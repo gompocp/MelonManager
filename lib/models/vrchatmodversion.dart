@@ -1,6 +1,6 @@
 import 'dart:core';
 
-class ModVersion {
+class VRChatModVersion {
   final int _version;
   final int approvalStatus;
   final String reason;
@@ -18,10 +18,10 @@ class ModVersion {
   final String changelog;
   final String updatedate;
 
-  ModVersion(this._version, this.approvalStatus, this.reason, this.name, this.modversion, this.vrchatversion, this.loaderversion, this.modtype, this.author, this.description, this.downloadlink, this.sourcelink, this.discord, this.hash, this.changelog, this.updatedate);
+  VRChatModVersion(this._version, this.approvalStatus, this.reason, this.name, this.modversion, this.vrchatversion, this.loaderversion, this.modtype, this.author, this.description, this.downloadlink, this.sourcelink, this.discord, this.hash, this.changelog, this.updatedate);
 
   /// Map json data into a version object
-  ModVersion.fromJson(Map<dynamic, dynamic> json)
+  VRChatModVersion.fromJson(Map<dynamic, dynamic> json)
       : _version = json['_version'],
         approvalStatus = json['ApprovalStatus'],
         reason = json['reason'],

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 
-class MelonLoad extends StatefulWidget {
-  const MelonLoad({Key key}) : super(key: key);
+class MelonHover extends StatefulWidget {
+  const MelonHover({Key key}) : super(key: key);
 
   @override
-  MelonLoadState createState() => MelonLoadState();
+  MelonHoverState createState() => MelonHoverState();
 }
 
-class MelonLoadState extends State<MelonLoad> {
+class MelonHoverState extends State<MelonHover> {
 
   Artboard _riveArtboard;
   RiveAnimationController _controller;
@@ -21,7 +21,7 @@ class MelonLoadState extends State<MelonLoad> {
           (data) async {
         final file = RiveFile.import(data);
         final artboard = file.mainArtboard;
-        artboard.addController(_controller = SimpleAnimation('Bounce'));
+        artboard.addController(_controller = SimpleAnimation('Hover'));
         setState(() => _riveArtboard = artboard);
       },
     );

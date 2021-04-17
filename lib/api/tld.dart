@@ -1,19 +1,26 @@
 import 'dart:convert';
 
 import 'package:melonmanager/enums/sortmode.dart';
-import 'package:melonmanager/models/mod.dart';
 import 'package:http/http.dart' as http;
+import 'package:melonmanager/models/tldmod.dart';
 
-class API {
-  static Future<List<Mod>> getMods(String base, String endpoint) async {
+class TLD {
+  static final String modsUrl = "tld.xpazeapps.com";
+  static final String modsEndpoint = "api.json";
+  static Future<List<TLDMod>> fetchMods(SortMode mode) async {
+    List<TLDMod> mods = await TLD.getMods(modsUrl, modsEndpoint);
+    return TLD.sort(mods, mode);
+  }
+  static Future<List<TLDMod>> getMods(String base, String endpoint) async {
     final response = await http.get(Uri.https(base, endpoint));
     if (response.statusCode == 200) {
-      return List<Mod>.from(jsonDecode(response.body).map((model)=> Mod.fromJson(model)));
+      Map<String, dynamic> map = jsonDecode(response.body);
+      return List.from(map.values.map((e) => TLDMod.fromJson(e)));
     } else {
       throw Exception('\'$base\' responded with ${response.statusCode}');
     }
   }
-  static List<Mod> sort(List<Mod> mods, SortMode mode) {
+  static List<TLDMod> sort(List<TLDMod> mods, SortMode mode) {
     switch(mode) {
       case SortMode.AuthorAlphabeticallyAZ:
         return _sortAuthorAZ(mods);
@@ -26,27 +33,27 @@ class API {
         return _sortNameAZ(mods);
     }
   }
-  static List<Mod> _sortNameAZ(List<Mod> mods)  {
+  static List<TLDMod> _sortNameAZ(List<TLDMod> mods)  {
     mods.sort((a, b) {
-      return a.versions[0].name.toLowerCase().compareTo(b.versions[0].name.toLowerCase());
+      return a.name.toLowerCase().compareTo(b.name.toLowerCase());
     });
     return mods;
   }
-  static List<Mod> _sortNameZA(List<Mod> mods)  {
+  static List<TLDMod> _sortNameZA(List<TLDMod> mods)  {
     mods.sort((a, b) {
-      return a.versions[0].name.toLowerCase().compareTo(b.versions[0].name.toLowerCase())*-1;
+      return a.name.toLowerCase().compareTo(b.name.toLowerCase())*-1;
     });
     return mods;
   }
-  static List<Mod> _sortAuthorAZ(List<Mod> mods)  {
+  static List<TLDMod> _sortAuthorAZ(List<TLDMod> mods)  {
     mods.sort((a, b) {
-      return a.versions[0].author.toLowerCase().compareTo(b.versions[0].author.toLowerCase());
+      return a.displayAuthor.first.toLowerCase().compareTo(b.displayAuthor.first.toLowerCase());
     });
     return mods;
   }
-  static List<Mod> _sortAuthorZA(List<Mod> mods)  {
+  static List<TLDMod> _sortAuthorZA(List<TLDMod> mods)  {
     mods.sort((a, b) {
-      return a.versions[0].author.toLowerCase().compareTo(b.versions[0].author.toLowerCase())*-1;
+      return a.displayAuthor.first.toLowerCase().compareTo(b.displayAuthor.first.toLowerCase())*-1;
     });
     return mods;
   }

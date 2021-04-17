@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:melonmanager/widgets/melonhover.dart';
 
 
 class Home extends StatefulWidget {
@@ -10,6 +11,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final snackBar = SnackBar(
+    duration: Duration(milliseconds: 3000),
     action: SnackBarAction(
       textColor: Colors.blueAccent,
       label: 'Dismiss',
@@ -17,7 +19,7 @@ class _HomeState extends State<Home> {
     ),
     backgroundColor: Colors.grey[800],
     content: Text(
-      'Hello!',
+      'Welcome!',
       style: TextStyle(
         color: Colors.white
       ),
@@ -36,12 +38,12 @@ class _HomeState extends State<Home> {
         child: Builder(
           builder: (build) {
             if(!Home.seenWelcomeMessage) {
-              Future.delayed(const Duration(milliseconds: 500), () {
+              Future.delayed(const Duration(milliseconds: 2000), () {
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               });
               Home.seenWelcomeMessage = true;
             }
-            return Text('Home Screen');
+            return MelonHover();
           },
         ),
       ),
