@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:melonmanager/api/btd6.dart';
+import 'package:melonmanager/api/apiutils.dart';
 import 'package:melonmanager/models/btd6mod.dart';
-
 
 
 class BTD6ModGridTile extends StatelessWidget {
@@ -75,7 +74,7 @@ class BTD6ModGridTile extends StatelessWidget {
                 child: CircleAvatar(
                   minRadius: 10,
                   maxRadius: 15,
-                  foregroundImage: CachedNetworkImageProvider("https://github.com/${BTD6.getGithubUsername(mod.downloadUrl)}.png?size=40",),
+                  foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(mod.downloadUrl),),
                   backgroundColor: Colors.white,
                 ),
               )

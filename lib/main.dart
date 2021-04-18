@@ -6,6 +6,7 @@ import 'package:melonmanager/screens/home.dart';
 import 'package:melonmanager/screens/tldmods.dart';
 import 'package:melonmanager/screens/vrchatmods.dart';
 import 'package:melonmanager/themes.dart';
+import 'package:melonmanager/widgets/drawerbanner.dart';
 import 'package:melonmanager/widgets/melontext.dart';
 
 void main() {
@@ -22,7 +23,6 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-
     currentTheme.addListener(() {
       setState(() {});
     });
@@ -37,14 +37,7 @@ class _AppState extends State<App> {
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: <Widget>[
-                  DrawerHeader(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: CachedNetworkImageProvider(bannerUrl)
-                        )
-                    ),
-                  ),
+                  DrawerBanner(),
                   ListTile(
                     title: Text('Home'),
                     onTap: ()  {
@@ -91,7 +84,6 @@ class _AppState extends State<App> {
                     fontSize: 35,
                   )
               ),
-              //TODO: MOVE THESE BUTTONS SOMEWHERE ELSE
               actions: [
                 IconButton(
                     icon: Icon(Icons.info_rounded),
@@ -100,7 +92,7 @@ class _AppState extends State<App> {
                         applicationName: 'MelonManager',
                         applicationVersion: '1.0.0',
                         applicationLegalese: '\'Fan made\' mod browser by gompo for mods made with MelonLoader',
-                        applicationIcon: Icon(Icons.favorite_outline),
+                        applicationIcon: Icon(Icons.favorite_outline), //TODO: Switch to ML Icon (maybe ?)
                         context: context,
                         useRootNavigator: false,
                       );

@@ -40,7 +40,7 @@ class _VRChatModsState extends State<VRChatMods> {
                   showDialog(
                       context: context,
                       builder: (builder) {
-                        return VRChatModInfo(vrcMods: vrcMods, index: index);
+                        return VRChatModInfo(mod: vrcMods[index]);
                       }
                   );
                 },

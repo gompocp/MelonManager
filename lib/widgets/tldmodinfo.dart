@@ -1,28 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:melonmanager/api/tld.dart';
+import 'package:melonmanager/api/apiutils.dart';
 import 'package:melonmanager/models/tldmod.dart';
 
 
 class TLDModInfo extends StatelessWidget {
 
-  //TODO: Just pass in the mod forehead
+
   const TLDModInfo({
     Key key,
-    @required this.tldMods,
-    @required this.index
+    @required this.mod,
   }) : super(key: key);
 
-  final List<TLDMod> tldMods;
-  final int index;
+  final TLDMod mod;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
         scrollable: true,
         title: Text(
-            tldMods[index].name
+            mod.name
         ),
         content: Column(
           children: [
@@ -40,13 +38,13 @@ class TLDModInfo extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Made by: ${tldMods[index].author}",),
+                  Text("Made by: ${mod.author}",),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: CircleAvatar(
                       minRadius: 10,
                       maxRadius: 15,
-                      foregroundImage: CachedNetworkImageProvider("https://github.com/${TLD.getGithubUsername(tldMods[index].download.browserDownloadUrl)}.png?size=40",),
+                      foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(mod.download.browserDownloadUrl),),
                       backgroundColor: Colors.white,
                     ),
                   )

@@ -38,7 +38,7 @@ class _TLDModsState extends State<TLDMods> {
                   showDialog(
                       context: context,
                       builder: (builder) {
-                        return TLDModInfo(tldMods: tldMods, index: index,);
+                        return TLDModInfo(mod: tldMods[index]);
                       }
                   );
                 },

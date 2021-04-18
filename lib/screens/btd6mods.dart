@@ -38,7 +38,7 @@ class _BTD6ModsState extends State<BTD6Mods> {
                   showDialog(
                       context: context,
                       builder: (builder) {
-                        return BTD6ModInfo(btd6Mods: btd6Mods, index: index);
+                        return BTD6ModInfo(mod: btd6Mods[index]);
                       }
                   );
                 },

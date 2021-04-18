@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:melonmanager/api/apiutils.dart';
 import 'package:melonmanager/api/tld.dart';
 import 'package:melonmanager/models/tldmod.dart';
 
@@ -69,7 +70,7 @@ class TLDModGridTile extends StatelessWidget {
                 child: CircleAvatar(
                   minRadius: 10,
                   maxRadius: 15,
-                  foregroundImage: CachedNetworkImageProvider("https://github.com/${TLD.getGithubUsername(mod.download.browserDownloadUrl)}.png?size=40",),
+                  foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(mod.download.browserDownloadUrl),),
                   backgroundColor: Colors.white,
                 ),
               )
