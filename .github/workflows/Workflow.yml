@@ -2,8 +2,9 @@ name: Flutter CI
 on:
   push:
     branches:
-    - master
-# on: push    # Default will running for every branch.
+#    - master
+# on: push    # Default will running for every branch.]
+  workflow_dispatch:
 env:
   flutter_version: "2.0.4"
   
