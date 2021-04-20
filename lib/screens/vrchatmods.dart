@@ -32,18 +32,8 @@ class _VRChatModsState extends State<VRChatMods> {
             padding: const EdgeInsets.all(15.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.0),
-              child: GestureDetector(
-                child: VRChatModGridTile(
-                  mod: vrcMods[index],
-                ),
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (builder) {
-                        return VRChatModInfo(mod: vrcMods[index]);
-                      }
-                  );
-                },
+              child: VRChatModGridTile(
+                mod: vrcMods[index],
               ),
             ),
           );

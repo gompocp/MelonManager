@@ -1,9 +1,10 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:melonmanager/api/apiutils.dart';
-import 'package:melonmanager/api/vrchat.dart';
 import 'package:melonmanager/models/vrchatmod.dart';
+import 'package:melonmanager/widgets/vrchatmodinfo.dart';
 
 import '../themes.dart';
 
@@ -17,6 +18,7 @@ class VRChatModGridTile extends StatefulWidget {
 }
 
 class _VRChatModGridTileState extends State<VRChatModGridTile> {
+  double border = 0.0;
 
   void _listener() {
     setState(() {});
@@ -36,70 +38,92 @@ class _VRChatModGridTileState extends State<VRChatModGridTile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: currentTheme.currentTheme == ThemeMode.dark ? Colors.grey[700] : Colors.grey[300],
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return InkWell(
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (builder) {
+              return VRChatModInfo(mod: widget.mod);
+            }
+        );
+      },
+      onHover: (isHovering) {
+        if(isHovering){
+          setState((){
+            border = 3.0;
+          });
+        }else{
+          setState((){
+            border = 0.0;
+          });
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(width: border, style: border == 0 ? BorderStyle.none : BorderStyle.solid),
+          color: currentTheme.currentTheme == ThemeMode.dark ? Colors.grey[700] : Colors.grey[300],
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 6, top: 6),
+                      child: Text(
+                        widget.mod.versions[0].name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 6, top: 6),
+                    child: Text(
+                      widget.mod.versions[0].modversion,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 6, top: 6),
+                    padding: const EdgeInsets.only(right: 6, bottom: 6),
                     child: Text(
-                      widget.mod.versions[0].name,
+                      "${widget.mod.versions[0].author.startsWith("<@!") ? APIUtils.GetGithubUsername(widget.mod.versions[0].sourcelink) : widget.mod.versions[0].author}",
+                      textAlign: TextAlign.right,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 6, top: 6),
-                  child: Text(
-                    widget.mod.versions[0].modversion,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  padding: const EdgeInsets.only(right: 6, bottom: 6),
+                  child: CircleAvatar(
+                    minRadius: 10,
+                    maxRadius: 15,
+                    foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(widget.mod.versions[0].sourcelink),),
+                    backgroundColor: Colors.white,
                   ),
                 )
               ],
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 6, bottom: 6),
-                  child: Text(
-                    "${widget.mod.versions[0].author.startsWith("<@!") ? APIUtils.GetGithubUsername(widget.mod.versions[0].sourcelink) : widget.mod.versions[0].author}",
-                    textAlign: TextAlign.right,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 6, bottom: 6),
-                child: CircleAvatar(
-                  minRadius: 10,
-                  maxRadius: 15,
-                  foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(widget.mod.versions[0].sourcelink),),
-                  backgroundColor: Colors.white,
-                ),
-              )
-            ],
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
