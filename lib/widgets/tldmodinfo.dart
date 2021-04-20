@@ -38,13 +38,23 @@ class TLDModInfo extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Made by: ${mod.author}",),
+                  Expanded(
+                      child: Text(
+                        "Made by: ${mod.author}",
+                        textAlign: TextAlign.right,
+                      )
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: CircleAvatar(
+                      onForegroundImageError: (_, trace) {
+                        print('Failed to fetch image for ${mod.author}');
+                      },
                       minRadius: 10,
                       maxRadius: 15,
-                      foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(mod.download.browserDownloadUrl),),
+                      foregroundImage: CachedNetworkImageProvider(
+                        APIUtils.GetGithubProfilePictureUrl(mod.download.browserDownloadUrl),
+                      ),
                       backgroundColor: Colors.white,
                     ),
                   )

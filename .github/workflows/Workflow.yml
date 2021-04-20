@@ -37,7 +37,9 @@ jobs:
     - run: flutter build windows
     - run: flutter build web
     - run: flutter build apk
-    
+
+    - run: Ren ./build/windows/runner/Release/melonmanager.exe ./build/windows/runner/Release/MelonManager.exe
+
     - uses: actions/upload-artifact@v2
       name: Uploading Windows Zip...
       with:

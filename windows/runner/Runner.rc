@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "A new Flutter project." "\0"
+            VALUE "CompanyName", "com.gompo" "\0"
+            VALUE "FileDescription", "MelonManager" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "melonmanager" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "melonmanager.exe" "\0"
-            VALUE "ProductName", "melonmanager" "\0"
+            VALUE "InternalName", "MelonManager" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2021 com.gompo. All rights reserved." "\0"
+            VALUE "OriginalFilename", "MelonManager.exe" "\0"
+            VALUE "ProductName", "MelonManager" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
