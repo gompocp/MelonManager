@@ -14,7 +14,7 @@ class VRChat {
   static Future<List<VRChatMod>> getMods(String base, String endpoint) async {
     final response = await http.get(Uri.https(base, endpoint));
     if (response.statusCode == 200) {
-      return List<VRChatMod>.from(jsonDecode(response.body).map((model)=> VRChatMod.fromJson(model)));
+      return List<VRChatMod>.from(jsonDecode(utf8.decode(response.bodyBytes)).map((model)=> VRChatMod.fromJson(model)));
     } else {
       throw Exception('\'$base\' responded with ${response.statusCode}');
     }

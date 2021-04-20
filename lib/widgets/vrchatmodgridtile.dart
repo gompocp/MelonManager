@@ -5,16 +5,40 @@ import 'package:melonmanager/api/apiutils.dart';
 import 'package:melonmanager/api/vrchat.dart';
 import 'package:melonmanager/models/vrchatmod.dart';
 
+import '../themes.dart';
 
-class VRChatModGridTile extends StatelessWidget {
+
+class VRChatModGridTile extends StatefulWidget {
   final VRChatMod mod;
   const VRChatModGridTile({Key key, this.mod}) : super(key: key);
+
+  @override
+  _VRChatModGridTileState createState() => _VRChatModGridTileState();
+}
+
+class _VRChatModGridTileState extends State<VRChatModGridTile> {
+
+  void _listener() {
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(_listener);
+  }
+
+  @override
+  void dispose() {
+    currentTheme.removeListener(_listener);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[700]
+        color: currentTheme.currentTheme == ThemeMode.dark ? Colors.grey[700] : Colors.grey[300],
       ),
       child: Column(
         children: [
@@ -26,7 +50,7 @@ class VRChatModGridTile extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 6, top: 6),
                     child: Text(
-                      mod.versions[0].name,
+                      widget.mod.versions[0].name,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -36,7 +60,7 @@ class VRChatModGridTile extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 6, top: 6),
                   child: Text(
-                    mod.versions[0].modversion,
+                    widget.mod.versions[0].modversion,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -54,7 +78,7 @@ class VRChatModGridTile extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 6, bottom: 6),
                   child: Text(
-                    "${mod.versions[0].author.startsWith("<@!") ? APIUtils.GetGithubUsername(mod.versions[0].sourcelink) : mod.versions[0].author}",
+                    "${widget.mod.versions[0].author.startsWith("<@!") ? APIUtils.GetGithubUsername(widget.mod.versions[0].sourcelink) : widget.mod.versions[0].author}",
                     textAlign: TextAlign.right,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -69,7 +93,7 @@ class VRChatModGridTile extends StatelessWidget {
                 child: CircleAvatar(
                   minRadius: 10,
                   maxRadius: 15,
-                  foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(mod.versions[0].sourcelink),),
+                  foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(widget.mod.versions[0].sourcelink),),
                   backgroundColor: Colors.white,
                 ),
               )

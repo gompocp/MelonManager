@@ -14,7 +14,7 @@ class TLD {
   static Future<List<TLDMod>> getMods(String base, String endpoint) async {
     final response = await http.get(Uri.https(base, endpoint));
     if (response.statusCode == 200) {
-      Map<String, dynamic> map = jsonDecode(response.body);
+      Map<String, dynamic> map = jsonDecode(utf8.decode(response.bodyBytes));
       return List.from(map.values.map((e) => TLDMod.fromJson(e)));
     } else {
       throw Exception('\'$base\' responded with ${response.statusCode}');

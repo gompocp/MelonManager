@@ -14,7 +14,7 @@ class BTD6 {
   static Future<List<BTD6Mod>> getMods(String base, String endpoint) async {
     final response = await http.get(Uri.https(base, endpoint));
     if (response.statusCode == 200) {
-      return List<BTD6Mod>.from(jsonDecode(response.body).map((model)=> BTD6Mod.fromJson(model)));
+      return List<BTD6Mod>.from(jsonDecode(utf8.decode(response.bodyBytes)).map((model)=> BTD6Mod.fromJson(model)));
     } else {
       throw Exception('\'$base\' responded with ${response.statusCode}');
     }
