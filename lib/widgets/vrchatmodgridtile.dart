@@ -116,6 +116,9 @@ class _VRChatModGridTileState extends State<VRChatModGridTile> {
                   child: CircleAvatar(
                     minRadius: 10,
                     maxRadius: 15,
+                    onForegroundImageError: (_, stack) {
+                      print('Failed to fetch github profile picture for ${widget.mod.versions.first.author}');
+                    },
                     foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(widget.mod.versions[0].sourcelink),),
                     backgroundColor: Colors.white,
                   ),
