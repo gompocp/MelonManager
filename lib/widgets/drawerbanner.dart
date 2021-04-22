@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
 
 class DrawerBanner extends StatelessWidget {
   const DrawerBanner({
@@ -15,7 +13,7 @@ class DrawerBanner extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
-              image: CachedNetworkImageProvider(bannerUrl)
+              image: Image.asset('assets/images/DrawerBanner.jpg').image
           )
       ),
     );

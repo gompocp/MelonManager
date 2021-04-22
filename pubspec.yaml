@@ -15,7 +15,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   cached_network_image: ^3.0.0
   rive: ^0.7.2
-  flutter_markdown: ^0.6.1
+  flutter_markdown: ^0.6.1 # Unused for now till I can get it to like not break my popups
+  bitsdojo_window: ^0.1.0+1
 
 dev_dependencies:
   flutter_test:
@@ -27,6 +28,9 @@ flutter:
 
   assets:
     - assets/animations/melonbounce.riv
+    - assets/images/DrawerBanner.jpg
+    - assets/images/Icon.png
+
   fonts:
     - family: Jaapokki
       fonts:
