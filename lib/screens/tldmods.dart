@@ -30,18 +30,8 @@ class _TLDModsState extends State<TLDMods> {
             padding: const EdgeInsets.all(15.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.0),
-              child: GestureDetector(
-                child: TLDModGridTile(
-                  mod: tldMods[index],
-                ),
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (builder) {
-                        return TLDModInfo(mod: tldMods[index]);
-                      }
-                  );
-                },
+              child: TLDModGridTile(
+                mod: tldMods[index],
               ),
             ),
           );

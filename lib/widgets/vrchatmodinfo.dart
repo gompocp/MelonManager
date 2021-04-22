@@ -132,22 +132,20 @@ class VRChatModInfo extends StatelessWidget {
               fit: BoxFit.contain,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: FittedBox(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Made by: ${mod.versions[0].author.startsWith("<@!") ? APIUtils.GetGithubUsername(mod.versions[0].sourcelink) : mod.versions[0].author}",),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: CircleAvatar(
-                          minRadius: 10,
-                          maxRadius: 15,
-                          foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(mod.versions[0].sourcelink),),
-                          backgroundColor: Colors.white,
-                        ),
-                      )
-                    ],
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Made by: ${mod.versions[0].author.startsWith("<@!") ? APIUtils.GetGithubUsername(mod.versions[0].sourcelink) : mod.versions[0].author}",),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: CircleAvatar(
+                        minRadius: 10,
+                        maxRadius: 15,
+                        foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(mod.versions[0].sourcelink),),
+                        backgroundColor: Colors.white,
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),

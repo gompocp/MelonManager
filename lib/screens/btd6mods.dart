@@ -30,18 +30,8 @@ class _BTD6ModsState extends State<BTD6Mods> {
             padding: const EdgeInsets.all(15.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.0),
-              child: GestureDetector(
-                child: BTD6ModGridTile(
-                  mod: btd6Mods[index],
-                ),
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (builder) {
-                        return BTD6ModInfo(mod: btd6Mods[index]);
-                      }
-                  );
-                },
+              child: BTD6ModGridTile(
+                mod: btd6Mods[index],
               ),
             ),
           );
