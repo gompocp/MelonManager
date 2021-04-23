@@ -7,7 +7,6 @@ import 'package:melonmanager/screens/vrchatmods.dart';
 import 'package:melonmanager/themes.dart';
 import 'package:melonmanager/widgets/drawerbanner.dart';
 import 'package:melonmanager/widgets/melontext.dart';
-import 'package:melonmanager/widgets/windowbuttons.dart';
 
 import 'constants.dart';
 
@@ -20,7 +19,6 @@ class WindowsApp extends StatefulWidget {
 }
 
 class _WindowsAppState extends State<WindowsApp> {
-  GlobalKey key = GlobalKey<ScaffoldState>();
   Widget currentScreen = Home();
   @override
   void initState() {
@@ -35,7 +33,6 @@ class _WindowsAppState extends State<WindowsApp> {
       home: Builder(
           builder: (context) {
             return Scaffold(
-                key: key,
                 drawer: Drawer(
                   child: ListView(
                     padding: EdgeInsets.zero,
@@ -86,7 +83,6 @@ class _WindowsAppState extends State<WindowsApp> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              backgroundBlendMode: BlendMode.srcOver,
                               color: currentTheme.currentTheme == ThemeMode.dark
                                   ? appBarDarkBackgroundColor
                                   : appBarLightBackgroundColor
@@ -118,6 +114,7 @@ class _WindowsAppState extends State<WindowsApp> {
                                     )
                                 ),
                                 IconButton(
+                                    tooltip: "About",
                                     splashRadius: 1,
                                     icon: Icon(Icons.info_rounded),
                                     onPressed: () {
@@ -132,6 +129,7 @@ class _WindowsAppState extends State<WindowsApp> {
                                     }
                                 ),
                                 IconButton(
+                                  tooltip: "Toggle Theme",
                                   splashRadius: 1,
                                   icon: Icon(Icons.brightness_4_rounded),
                                   onPressed: () {currentTheme.toggleTheme();},

@@ -11,7 +11,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final snackBar = SnackBar(
-    duration: Duration(milliseconds: 3000),
+    duration: Duration(milliseconds: 2500),
     action: SnackBarAction(
       textColor: Colors.blueAccent,
       label: 'Dismiss',
@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
         child: Builder(
           builder: (build) {
             if(!Home.seenWelcomeMessage) {
-              Future.delayed(const Duration(milliseconds: 2000), () {
+              Future.delayed(const Duration(milliseconds: 1000), () {
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               });
               Home.seenWelcomeMessage = true;

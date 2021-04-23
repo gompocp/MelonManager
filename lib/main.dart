@@ -11,7 +11,7 @@ void main() {
   if(kIsWeb || !Platform.isWindows) {
     runApp(DefaultApp());
   }
-  else {
+  else {                                //TODO: REMOVE ALL THE DUPLICATE CODE
     runApp(WindowsApp());
     doWhenWindowReady(() {
       final win = appWindow;

@@ -36,7 +36,7 @@ jobs:
     - run: flutter pub get
     
     - run: flutter build windows
-    - run: flutter build web --web-renderer html # Note: this disables WEBGL but it allows but it allows for images from other websites to be rendered
+    - run: flutter build web --web-renderer html # Note: this disables WEBGL but it allows for images from other websites to be rendered
     - run: flutter build apk
 
     # - run: Ren ./build/windows/runner/Release/melonmanager.exe ./build/windows/runner/Release/MelonManager.exe
