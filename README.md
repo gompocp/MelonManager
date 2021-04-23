@@ -10,6 +10,10 @@ You can find prebuilt releases for android/web/windows through github actions he
 > Note: api.vrcmg.com has restrictions when it comes to cors and this affects the web build as seen [here](https://melonmanagerdemo.glitch.me)
 
 > Don't go looking for support in the MelonLoader discord. Github issues are a thing that exist
+
+
+![android](https://i.imgur.com/Ofa9DNV.gif)
+![windows](https://i.imgur.com/wi35B1J.gif)
  
 ## Building
 If you'd like to build this yourself you'll need to 
