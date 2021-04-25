@@ -1,30 +1,32 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
-import 'package:melonmanager/screens/btd6mods.dart';
 import 'package:melonmanager/screens/home.dart';
-import 'package:melonmanager/screens/tldmods.dart';
-import 'package:melonmanager/screens/vrchatmods.dart';
 import 'package:melonmanager/themes.dart';
-import 'package:melonmanager/widgets/drawerbanner.dart';
+import 'package:melonmanager/widgets/aboutbutton.dart';
 import 'package:melonmanager/widgets/melontext.dart';
+import 'package:melonmanager/widgets/navdrawer.dart';
+import 'package:melonmanager/widgets/togglethemebutton.dart';
 
 import 'constants.dart';
 
 class WindowsApp extends StatefulWidget {
-  final Drawer drawer;
-  const WindowsApp({Key key, this.drawer}) : super(key: key);
-
   @override
   _WindowsAppState createState() => _WindowsAppState();
 }
 
 class _WindowsAppState extends State<WindowsApp> {
   Widget currentScreen = Home();
+  NavDrawer navDrawer = NavDrawer();
   @override
   void initState() {
     super.initState();
     currentTheme.addListener(() {
       setState(() {});
+    });
+    navDrawer.addListener(() {
+      setState(() {
+        currentScreen = NavDrawer.currentScreen;
+      });
     });
   }
   @override
@@ -33,50 +35,7 @@ class _WindowsAppState extends State<WindowsApp> {
       home: Builder(
           builder: (context) {
             return Scaffold(
-                drawer: Drawer(
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    children: <Widget>[
-                      DrawerBanner(),
-                      ListTile(
-                        title: Text('Home'),
-                        onTap: ()  {
-                          Navigator.pop(context);
-                          setState(() {
-                            currentScreen = Home();
-                          });
-                        },
-                      ),
-                      ListTile(
-                        title: Text('VRChat'),
-                        onTap: ()  {
-                          Navigator.pop(context);
-                          setState(() {
-                            currentScreen = VRChatMods();
-                          });
-                        },
-                      ),
-                      ListTile(
-                        title: Text('BloonsTD6'),
-                        onTap: () {
-                          Navigator.pop(context);
-                          setState(() {
-                            currentScreen = BTD6Mods();
-                          });
-                        },
-                      ),
-                      ListTile(
-                        title: Text('The Long Dark'),
-                        onTap: () {
-                          Navigator.pop(context);
-                          setState(() {
-                            currentScreen = TLDMods();
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                drawer: navDrawer,
                 body: Builder(
                   builder: (context) {
                     return Column(
@@ -113,27 +72,8 @@ class _WindowsAppState extends State<WindowsApp> {
                                       ),
                                     )
                                 ),
-                                IconButton(
-                                    tooltip: "About",
-                                    splashRadius: 1,
-                                    icon: Icon(Icons.info_rounded),
-                                    onPressed: () {
-                                      showAboutDialog(
-                                        applicationName: 'MelonManager',
-                                        applicationVersion: '1.0.0',
-                                        applicationLegalese: '\'Fan made\' mod browser by gompo for mods made with MelonLoader',
-                                        applicationIcon: Image.asset("assets/images/Icon.png"), //Icon(Icons.favorite_outline),  //TODO: Switch to ML Icon (maybe ?)
-                                        context: context,
-                                        useRootNavigator: false,
-                                      );
-                                    }
-                                ),
-                                IconButton(
-                                  tooltip: "Toggle Theme",
-                                  splashRadius: 1,
-                                  icon: Icon(Icons.brightness_4_rounded),
-                                  onPressed: () {currentTheme.toggleTheme();},
-                                ),
+                                AboutButton(),
+                                ToggleThemeButton(),
                                 SizedBox(
                                     width: windowsAppBarContainerHeight,
                                     height: windowsAppBarContainerHeight,
@@ -154,10 +94,7 @@ class _WindowsAppState extends State<WindowsApp> {
                           ),
                         ),
                         Container(
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height - windowsAppBarContainerHeight,
+                            height: MediaQuery.of(context).size.height - windowsAppBarContainerHeight,
                             child: currentScreen
                         ),
                       ],
@@ -171,11 +108,5 @@ class _WindowsAppState extends State<WindowsApp> {
       darkTheme:  CustomThemes.darkTheme,
       themeMode: currentTheme.currentTheme,
     );
-  }
-
-  updateScreen(screen) {
-    setState(() {
-      currentScreen = screen;
-    });
   }
 }

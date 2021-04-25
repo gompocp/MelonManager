@@ -21,8 +21,8 @@ If you'd like to build this yourself you'll need to
 - Install all necessary dependencies for the platform you want to build for. See [here](https://flutter.dev/desktop#requirements) for desktop requirements
 - Edit your flutter config if needed to allow for building for your target platform
 
-Then you run can the flutter commands
-- `flutter pub get`
-- `flutter build windows` for windows
-- `flutter build android` for android
+Then you can run the following flutter commands after
+- `flutter pub get` to get all dependencies
+- `flutter build windows` for a windows build
+- `flutter build android` for an android build
 - `flutter build web --web-renderer html` for a web build. This disables WEBGL but it allows for images from other websites to be rendered
