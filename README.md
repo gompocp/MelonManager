@@ -12,8 +12,8 @@ You can find prebuilt releases for android/web/windows through github actions he
 > Don't go looking for support in the MelonLoader discord. Github issues are a thing that exist
 
 
-![android](https://i.imgur.com/Ofa9DNV.gif)
-![windows](https://i.imgur.com/wi35B1J.gif)
+![android](https://i.imgur.com/Ofa9DNV.gif) <br>
+Windows preview can be viewed [here](https://i.imgur.com/wi35B1J.gif)
  
 ## Building
 If you'd like to build this yourself you'll need to 
