@@ -15,7 +15,7 @@ class AboutButton extends StatelessWidget {
             applicationName: 'MelonManager',
             applicationVersion: '1.0.0',
             applicationLegalese: '\'Fan made\' mod browser by gompo for mods made with MelonLoader',
-            applicationIcon: Image.asset("assets/images/Icon.png"), //Icon(Icons.favorite_outline), //TODO: Switch to ML Icon (maybe ?)
+            applicationIcon: Image.asset("assets/images/Icon.png"),
             context: context,
             useRootNavigator: false,
           );

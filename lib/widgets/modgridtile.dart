@@ -2,21 +2,32 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:melonmanager/api/apiutils.dart';
-import 'package:melonmanager/models/btd6mod.dart';
+import 'package:melonmanager/widgets/modinfo.dart';
 
 import '../themes.dart';
-import 'btd6modinfo.dart';
 
 
-class BTD6ModGridTile extends StatefulWidget {
-  final BTD6Mod mod;
-  const BTD6ModGridTile({Key key, this.mod}) : super(key: key);
+class ModGridTile extends StatefulWidget {
+  final String name;
+  final String version;
+  final String imageUrl;
+  final String author;
+  final String githubLink; //Used to get author profile picture
+  final String description;
+  final String vrcVersion;
+  final String mlVersion;
+  final String modType;
+  final String tags;
+  final bool workingCurrently;
+  final List<String> authors;
+  final List<String> dependencies;
+  const ModGridTile({Key key, @required this.name, @required this.version, @required this.author, @required this.githubLink, this.imageUrl, this.description, this.vrcVersion, this.mlVersion, this.modType, this.tags, this.workingCurrently, this.authors, this.dependencies}) : super(key: key);
 
   @override
-  _BTD6ModGridTileState createState() => _BTD6ModGridTileState();
+  _ModGridTileState createState() => _ModGridTileState();
 }
 
-class _BTD6ModGridTileState extends State<BTD6ModGridTile> {
+class _ModGridTileState extends State<ModGridTile> {
   double border = 0.0;
 
   void _listener() {
@@ -42,7 +53,20 @@ class _BTD6ModGridTileState extends State<BTD6ModGridTile> {
         showDialog(
             context: context,
             builder: (builder) {
-              return BTD6ModInfo(mod: widget.mod);
+              return ModInfo(
+                name: widget.name,
+                version: widget.version,
+                author: widget.author,
+                githubLink: widget.githubLink,
+                modType: widget.modType,
+                mlVersion: widget.mlVersion,
+                vrcVersion: widget.vrcVersion,
+                description: widget.description,
+                dependencies: widget.dependencies,
+                authors: widget.authors,
+                tags: widget.tags,
+                workingCurrently: widget.workingCurrently,
+              );
             }
         );
       },
@@ -71,7 +95,7 @@ class _BTD6ModGridTileState extends State<BTD6ModGridTile> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 6, top: 6),
                     child: Text(
-                      widget.mod.name,
+                      widget.name,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -81,7 +105,7 @@ class _BTD6ModGridTileState extends State<BTD6ModGridTile> {
                 Padding(
                   padding: const EdgeInsets.only(right: 6, top: 6),
                   child: Text(
-                    widget.mod.version,
+                    widget.version,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -92,12 +116,13 @@ class _BTD6ModGridTileState extends State<BTD6ModGridTile> {
               ],
             ),
             Expanded(
-              child: CachedNetworkImage(
-                imageUrl: widget.mod.pngUrl,
-                errorWidget: (context, str, dyn) {
-                  return Container();
-                },
-              )
+                child: widget.imageUrl == null ? Container() :
+                CachedNetworkImage(
+                  imageUrl: widget.imageUrl,
+                  errorWidget: (context, str, dyn) {
+                    return Container();
+                  },
+                )
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -106,7 +131,7 @@ class _BTD6ModGridTileState extends State<BTD6ModGridTile> {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 6, bottom: 6),
                     child: Text(
-                      "${widget.mod.author}",
+                      "${widget.author.startsWith("<@!") ? APIUtils.GetGithubUsername(widget.githubLink) : widget.author}", //Why do people use their @ in their submission REEEEEEEEEEEEEEE
                       textAlign: TextAlign.right,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -121,7 +146,10 @@ class _BTD6ModGridTileState extends State<BTD6ModGridTile> {
                   child: CircleAvatar(
                     minRadius: 10,
                     maxRadius: 15,
-                    foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(widget.mod.downloadUrl),),
+                    onForegroundImageError: (_, stack) {
+                      print('Failed to fetch github profile picture for ${widget.author}');
+                    },
+                    foregroundImage: CachedNetworkImageProvider(APIUtils.GetGithubProfilePictureUrl(widget.githubLink),),
                     backgroundColor: Colors.white,
                   ),
                 )

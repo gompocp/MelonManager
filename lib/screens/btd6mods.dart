@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:melonmanager/api/btd6.dart';
 import 'package:melonmanager/enums/sortmode.dart';
 import 'package:melonmanager/models/btd6mod.dart';
-import 'package:melonmanager/widgets/btd6modgridtile.dart';
-import 'package:melonmanager/widgets/btd6modinfo.dart';
 import 'package:melonmanager/widgets/melonload.dart';
+import 'package:melonmanager/widgets/modgridtile.dart';
 
 class BTD6Mods extends StatefulWidget {
   @override
@@ -30,8 +29,15 @@ class _BTD6ModsState extends State<BTD6Mods> {
             padding: const EdgeInsets.all(15.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.0),
-              child: BTD6ModGridTile(
-                mod: btd6Mods[index],
+              child: ModGridTile(
+                name: btd6Mods[index].name,
+                version: btd6Mods[index].version,
+                description: btd6Mods[index].description,
+                author: btd6Mods[index].author,
+                tags: btd6Mods[index].tags,
+                modType: btd6Mods[index].type,
+                imageUrl: btd6Mods[index].pngUrl,
+                githubLink: btd6Mods[index].downloadUrl,
               ),
             ),
           );

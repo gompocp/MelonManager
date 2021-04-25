@@ -4,10 +4,7 @@ import 'package:melonmanager/api/vrchat.dart';
 import 'package:melonmanager/enums/sortmode.dart';
 import 'package:melonmanager/models/vrchatmod.dart';
 import 'package:melonmanager/widgets/melonload.dart';
-import 'package:melonmanager/widgets/vrchatmodgridtile.dart';
-import 'package:melonmanager/widgets/vrchatmodinfo.dart';
-
-
+import 'package:melonmanager/widgets/modgridtile.dart';
 
 class VRChatMods extends StatefulWidget {
   @override
@@ -32,8 +29,15 @@ class _VRChatModsState extends State<VRChatMods> {
             padding: const EdgeInsets.all(15.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.0),
-              child: VRChatModGridTile(
-                mod: vrcMods[index],
+              child: ModGridTile(
+                name: vrcMods[index].versions.first.name,
+                version: vrcMods[index].versions.first.modversion,
+                githubLink: vrcMods[index].versions.first.sourcelink,
+                author: vrcMods[index].versions.first.author,
+                description: vrcMods[index].versions.first.description,
+                mlVersion: vrcMods[index].versions.first.loaderversion,
+                modType: vrcMods[index].versions.first.modtype,
+                vrcVersion: vrcMods[index].versions.first.vrchatversion,
               ),
             ),
           );
